@@ -7,17 +7,8 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v4
         
-        - name: Install Cowsay
-          run: sudo apt install cowsay -y
-
-        - name: Generate ASCII Art
-          run: cowsay -f dragon "I am a sassy dragon :p" >> dragon.txt
-        
-        - name: Test if file exists
-          run: grep -i "dragon" dragon.txt 
-        
-        - name: Read file
-          run: cat dragon.txt
-        
         - name: Check repo files
           run: ls -ltra
+        
+        - name: Executing script
+          run: sudo apt install cowsay -y
