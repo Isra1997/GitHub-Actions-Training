@@ -1,0 +1,41 @@
+name: Asccii
+on: push
+jobs:
+    job_1:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Install cowsay package 
+          run: sudo apt install cowsay -y
+        - name: Generate ASCII Art
+          run: cowsay -f dragon "I am a sassy dragon :p" >> dragon.txt
+        - name: Upload Artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: dragon-test-file
+            path: dragon.txt
+    
+    job_2:
+        needs: job_1
+        runs-on: ubuntu-latest
+        steps:
+        - name: Download Artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: dragon-test-file
+        - name: Sleep 10
+          run: sleep 10
+        - name: Check if file exsits
+          run: grep -i "dragon" dragon.txt 
+    
+    job_3:
+        needs: job_2
+        runs-on: ubuntu-latest
+        steps:
+        - name: Download Artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: dragon-test-file
+        - name: Read file
+          run: cat dragon.txt
+
+
