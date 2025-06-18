@@ -10,8 +10,7 @@ jobs:
         - name: List and Read files
           run: |
                echo "Hello, there this is my first workflow!"
-               ls
+               ls -ltra
                cat README.md
         - name: Generate ASCII Art
           run: cowsay -f dragon "I am a sassy dragon :p" >> dragon.txt
-          
